@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+    <security:http use-expressions="false">
+<!--   Mecanismo de autentificación -->
+<!--   basico o certificado -->
+       <security:http-basic/>
+   
+<!--   Protección de recursos -->
+       <security:intercept-url pattern="/saludo/**" method="GET" access="ROLE_USER"/>
+		<security:intercept-url pattern="/saludo" method="DELETE" access="ROLE_USER"/>
+		<security:intercept-url pattern="/saludo" method="POST" access="ROLE_ADMIN"/>
+     
+<!--   proteccion contra ataques(token) (desabilitar) -->
+       <security:csrf disabled="true"/>
+    </security:http>
+    
+    <security:authentication-manager>
+        <security:authentication-provider>
+<!--         Mecanismo de encriptación de contraseñas -->
+<!--              <security:password-encoder hash="sha"/> -->
+<!--         opcion1 : Usuarios en el propio archivo -->
+             <security:user-service>
+<!--                  con {noop} no hace falta encriptar las contraseñas                                      -->
+                <security:user name="user1" password="{noop}user1" authorities="ROLE_USER"/>
+                <security:user name="user2" password="{noop}user2" authorities="ROLE_USER,ROLE_ADMIN"/>           
+             </security:user-service>
+         </security:authentication-provider> 
+    </security:authentication-manager>
+</beans>
