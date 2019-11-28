@@ -12,10 +12,12 @@ import model.Persona;
 
 @RestController
 public class SaludoController {
+	
+	
 
 	@GetMapping(value="/saludo", produces = MediaType.TEXT_PLAIN_VALUE)
 	public String saludar() {
-		return "Bienvenido a mi servicio REST";
+		return "Bienvenido a mi servicio REST. He cambiado este texto ";
 	}
 	
 	@GetMapping(value="/saludo/{name}", produces = MediaType.TEXT_PLAIN_VALUE)
