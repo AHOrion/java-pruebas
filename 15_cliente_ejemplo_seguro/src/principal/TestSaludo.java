@@ -18,7 +18,7 @@ public class TestSaludo {
 		template.getInterceptors().add(intercep);
 		//llamada a primer recurso
 		String resultado=template.getForObject(url, String.class);
-		System.out.println("Respuesta primer recurso "+resultado);
+		System.out.println("Respuesta primer recurso MODIF GITHUB 2 "+resultado);
 		//llamada a segundo recurso
 		String resultado2=template.getForObject(url+"/profe", String.class);
 		System.out.println("Respuesta segundo recurso "+resultado2);
@@ -28,7 +28,7 @@ public class TestSaludo {
 		//llamada al cuarto recurso
 		Item it=new Item("prueba","prueba@gmail.com",99);
 		String resultado3=template.postForObject(url, it, String.class);
-		System.out.println("Respuesta cuarto recurso "+resultado3);
+		System.out.println("Respuesta cuarto recurso MODIF GITHUB 2  "+resultado3);
 		//llamada al quinto recurso
 		template.delete(url+"/testing");
 	
